@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-SNPs<- read.table("23andMe_complete.txt", header = TRUE, sep = "\t")
+SNPs<- read.table("data//23andMe_complete.txt", header = TRUE, sep = "\t")
 
 ```
 
