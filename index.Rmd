@@ -3,6 +3,7 @@ title: "index"
 author: "Joe Drake"
 date: "3/21/2020"
 output: html_document
+bibliography: data/references.bibtex
 ---
 
 ## Lab reports
@@ -22,5 +23,6 @@ Lab 5
 Lab 6
 <https://github.com/drake-j/genome-analysis/blob/master/paper.html>
 
+I like this paper as a reference placeholder [@Moilanen2002]
 
 # REFERENCE
