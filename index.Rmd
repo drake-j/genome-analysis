@@ -14,7 +14,7 @@ Lab 1
 <https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/Lab1.html>
 
 Lab 3
-<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/Lab3_HuGen_2020_tutorial.html>
+<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/lab3ggplot.html>
 
 Lab 4
 <https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/lab4.html>
