@@ -7,21 +7,23 @@ bibliography: data/references.bibtex
 ---
 
 ## Lab reports
+Using this in front of a github page url turns an html file into a webpage to view
+https://htmlpreview.github.io/?
 
 Lab 1
-<https://github.com/drake-j/genome-analysis/blob/master/Lab1.html>
+<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/Lab1.html>
 
 Lab 3
-<https://github.com/drake-j/genome-analysis/blob/master/Lab3_HuGen_2020_tutorial.html>
+<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/Lab3_HuGen_2020_tutorial.html>
 
 Lab 4
-<https://github.com/drake-j/genome-analysis/blob/master/lab4.html>
+<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/lab4.html>
 
 Lab 5
-<https://github.com/drake-j/genome-analysis/blob/master/lab5.html>
+<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/lab5.html>
 
 Lab 6
-<https://github.com/drake-j/genome-analysis/blob/master/paper.html>
+<https://htmlpreview.github.io/?https://github.com/drake-j/genome-analysis/blob/master/paper.html>
 
 I like this paper as a reference placeholder [@Moilanen2002]
 
