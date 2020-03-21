@@ -1,0 +1,179 @@
+---
+title: 'Lab 4: Pub Figs'
+author: "Joseph Drake"
+date: "2/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Controlling graph size in RMarkdown
+
+```{r}
+#Loard Libraries
+library(tidyverse)
+```
+
+```{r}
+#load files
+SNPs<- read.table("23andMe_complete.txt", header = TRUE, sep = "\t")
+```
+
+```{r, fig.width = 6, fig.height = 6}
+# to adjust figure size {r, fig.width = 6, fig.height = 6}
+SNPs$chromosome = ordered(SNPs$chromosome, levels=c(seq(1, 22), "X", "Y", "MT"))
+ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = genotype, fill = chromosome)) + 
+  coord_polar() +
+  ggtitle("Total SNPs for each genotype") +
+  ylab("Total number of SNPs") +
+  xlab("Genotype")
+```
+
+## Graphics Output
+
+```{r}
+
+# Plot graph to a pdf outputfile
+pdf("SNP_example_plot.pdf", width=6, height=3)
+ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype))
+dev.off()
+
+# Plot graph to a png outputfile
+ppi <- 300
+png("SNP_example_plot.png", width=6*ppi, height=6*ppi, res=ppi)
+ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype))
+dev.off()
+
+```
+
+## RMarkdown loading images
+
+```{r}
+# This is the RMarkdown style for inserting images
+# Your image must be in your working directory
+# This command is put OUTSIDE the r code chunk
+
+```
+
+![Genotype counts per chromosome](SNP_example_plot.png) 
+
+```{r}
+# This is an alternative way using html. 
+# Remember that it must be in your working directory or you will need to specify the full path.
+# The html is put OUTSIDE the r code chunk.
+```
+
+<img src="SNP_example_plot.png" alt="Genotype counts per chromosome" style="width: 600px;"/>
+
+## Interactive graphs + tables
+
+With plotly/ggplotly (https://plot.ly/ggplot2/) you can make interactive graphs in your lab report.
+
+```{r}
+# Version 1 1
+library(plotly)
+p <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+  geom_point()
+ggplotly(p)
+
+```
+
+
+```{r}
+# Version 2
+library(plotly)
+ggplotly(
+  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+    geom_point()
+ )
+
+```
+
+You can also make interactive data tables with the DT package (https://rstudio.github.io/DT/) *** Don’t do this with tables of hundreds of thousands of rows (as in your complete SNP table)
+```{r}
+library(DT)
+datatable(iris)
+
+```
+
+#Exercises
+## Exercise 1
+Add title and labels for the x and y axis to Lab3 ex1. Color the bars blue
+
+```{r}
+ggplot(SNPs, aes(x=chromosome)) + geom_bar(fill="blue") +
+  labs(title="Genotypes") + xlab("Chromosome") + ylab("Count")
+
+```
+
+##Exercise 2
+
+To Lab3 ex3 add more defined x and y axis labels, add a title, Change the colors of the genotypes, so that the dinucleotides (e.g. AA) are one color, the mononucleotides (A) are another and D’s and I’s a third color. One way to do this is to specify the color of each genotype.
+
+```{r}
+ggplot(SNPs, aes(x=chromosome) ) + geom_bar(aes(fill=genotype)) +
+labs(title="Genotypes") + xlab("Chromosome") + ylab("Count") +
+  scale_fill_manual(values=rep(c("#999999", "#E69F00"), 10)) # "#56B4E9"))
+#and I could make sure to set a color for each of the 20 levels of the genotype factor, but too lazy to do that now 
+  
+```
+
+## Exercise 3
+
+From Lab3 ex5, make an output png file, then load the file into report using the RMarkdown or html format.
+
+```{r}
+
+ppi <- 300
+png("SNP_example_plot.png", width=6*ppi, height=6*ppi, res=ppi)
+
+ggplot(SNPs, aes(x=chromosome)) + 
+  geom_bar(aes(fill=genotype), position="dodge") 
+
+dev.off()
+
+
+```
+![Genotype counts per chromosome](SNP_example_plot.png) 
+
+## Exercise 4
+
+For Lab3 ex6 add more descriptive x and y axis labels, add a title, make the x-axis for each graph readable in your final report file.
+
+```{r}
+plot6 <-ggplot(SNPs, aes(x=chromosome)) + 
+  geom_bar() +
+  facet_wrap(.~genotype) +
+  labs(title="Genotypes") + xlab("Chromosome") + ylab("Count") +
+  theme(axis.text.x = element_text(angle = 90))
+plot6
+#don't care about x-axis readability
+```
+
+## Exercise 5
+
+Turn Lab3 ex6 into an interactive graph using plotly
+
+```{r}
+library(plotly)
+ggplotly(plot6)
+
+```
+
+##Exercise 6
+
+Make an interactive table of the SNPS found in on the Y chromosome from the 23andMe_complete data set
+
+```{r}
+
+library(DT)
+subsetY <- subset(SNPs, chromosome=="Y")
+datatable(subsetY)
+
+```
+

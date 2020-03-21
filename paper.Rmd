@@ -1,0 +1,15 @@
+---
+title: "paper"
+author: "Joe Drake"
+date: "3/21/2020"
+output: html_document
+bibliography: data/references.bib
+---
+
+Here is an example of a reference for a paper [@...]
+
+
+
+
+# REFERENCE
+
