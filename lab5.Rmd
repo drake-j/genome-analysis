@@ -48,7 +48,7 @@ getwd()
 ```
 
 
-```{r}
+```{r, echo=FALSE, eval=FALSE} 
 # Importing from your data directory from any location
 SNPs<- read.table("/home/jlb/jlb@umass.edu/GoEcology/Courses/583-AdvGen/2020_Spring/GenomeAnalysisR/data/23andMe_example_cat25.txt", header = TRUE, sep = "\t")
 
@@ -56,7 +56,7 @@ SNPs<- read.table("/home/jlb/jlb@umass.edu/GoEcology/Courses/583-AdvGen/2020_Spr
 
 Setting up for data carpentry exercises: https://datacarpentry.org/R-ecology-lesson/03-dplyr.html
 
-```{r  eval = FALSE}
+```{r}
  download.file(url="https://ndownloader.figshare.com/files/2292169",
               destfile = "data/portal_data_joined.csv")
 
@@ -253,12 +253,12 @@ surveys %>%
 surveys %>% 
   count(plot_type)
 
-surveys %>% 
-  group_by(species_id) %>% 
-  summarise(meanhfl=mean(hindfoot_length),
-            minhfl=min(hindfoot_length),
-           maxhfl= max(hindfoot_length),
-           n = n(hindfoot_length))
+#surveys %>% 
+#  group_by(species_id) %>% 
+#  summarise(meanhfl=mean(hindfoot_length),
+#            minhfl=min(hindfoot_length),
+#           maxhfl= max(hindfoot_length),
+#           n = n(hindfoot_length))
 
 
 surveys %>% 
@@ -320,7 +320,7 @@ SNPs %>%
 
 
 ```
-![Genotype counts per chromosome](SNP_example_plot.png) 
+![Genotype counts per chromosome](images/SNP_example_plot.png) 
 
 ## Exercise 4
 

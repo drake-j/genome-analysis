@@ -7,6 +7,20 @@ output: html_document
 
 ## Lab reports
 
-Lab 3
-<http://rmarkdown.rstudio.com>.
+Lab 1
+<https://github.com/drake-j/genome-analysis/blob/master/Lab1.html>
 
+Lab 3
+<https://github.com/drake-j/genome-analysis/blob/master/Lab3_HuGen_2020_tutorial.html>
+
+Lab 4
+<https://github.com/drake-j/genome-analysis/blob/master/lab4.html>
+
+Lab 5
+< >
+
+Lab 6
+<https://github.com/drake-j/genome-analysis/blob/master/paper.html>
+
+
+# REFERENCE
