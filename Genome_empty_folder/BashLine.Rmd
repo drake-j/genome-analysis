@@ -1,0 +1,84 @@
+---
+title: "BashLine"
+author: "Joe Drake"
+date: "3/24/2020"
+output: html_document
+---
+
+## Description
+
+Write a BASH/UNIX workflow that incorporates cat, head, tail, chmod and grep commands plus pwd, cd, mkdir, ls, cp, mv and rm commands.
+
+template insert
+```{bash, eval=FALSE}
+
+
+```
+
+
+# step 1
+Check working directory (pwd), make a new one (mkdir), change to that dir (cd)
+
+```{bash, eval=FALSE}
+
+pwd
+mkdir MYDRAFTS
+cd MYDRAFTS
+
+```
+
+
+# step 2
+
+Make a file with word science in a sentence
+
+Use nano to make the file and use nano command ctrl+X to save it. hit Y or enter it to finalize it 
+
+```{bash, eval=FALSE}
+nano draft.txt
+
+```
+
+# step 3
+
+Copy that file
+
+```{bash, eval=FALSE}
+cp draft.txt draft_old.txt
+
+```
+
+# step 4
+
+check out that files lines (head and tail), search for pattern (grep), and then append those files (cat), list h files (ls), and restrict the access (chmod)
+
+```{bash, eval=FALSE}
+head -1 draft.txt
+tail -1 draft_old.txt
+
+grep science draft.txt
+
+cat draf.txt > draft_old.txt temp
+
+grep 'science is cool' temp
+
+chmod u+r temp
+
+
+```
+
+
+
+# step 5
+
+remove (rm) the cancatinated file
+
+
+
+```{bash, eval=FALSE}
+rm temp
+
+```
+
+
+
