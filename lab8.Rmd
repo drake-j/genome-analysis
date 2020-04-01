@@ -1,0 +1,15 @@
+---
+title: "Lab8"
+author: "Joe Drake"
+date: "3/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+```
+
+![Limited Family Tree](familytree.png) 
+
+
+I think it important to explain. My father never has told me the name of his mother or father. I don't plan to disrespect that decision until he has passed. He had a pretty nasty childhood. And on my mothers size, we can only go back the 3 generations because that's when we lose records because that's the generation that immigrated to the states. My family is still pretty fresh off the boat considering I am in MA now and some folks can probably trace back to puritanical times. 
