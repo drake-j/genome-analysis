@@ -1,0 +1,112 @@
+---
+title: "Lab10_Exercises"
+author: "Joe Drake"
+date: "4/6/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(maps)
+library(mapdata)
+library(lubridate)
+library(viridis)
+library(wesanderson)
+library(RColorBrewer)
+library(plotly)
+library(gganimate)
+library(transformr)
+
+theme_set(theme_bw())
+
+```
+
+# Indiana State
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+daily_report <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/04-07-2020.csv")) %>% 
+  rename(Long = "Long_") %>% 
+  filter(Province_State == "Indiana") %>% 
+  group_by(Admin2) %>% 
+  summarize(Confirmed = sum(Confirmed)) %>% 
+  mutate(Admin2 = tolower(Admin2))
+
+us <- map_data("state")
+in_us <- subset(us, region == "indiana")
+counties <- map_data("county")
+in_county <- subset(counties, region == "indiana")
+
+state_join <- left_join(in_county, daily_report, by = c("subregion" = "Admin2")) 
+
+# plot state map
+ggplot(data = in_county, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1.3) + 
+# Add data layer
+  geom_polygon(data = state_join, aes(fill = Confirmed), color = "white") +
+    scale_fill_gradientn(colors = brewer.pal(n = 5, name = "BuGn"),
+                         trans = "log10") +
+  labs(title = "COVID-19 Confirmed Cases in Indiana")
+
+
+```
+
+# Indiana interactive map
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+ggplotly(
+  ggplot(data = in_county, mapping = aes(x = long, y = lat, group = group)) + 
+  coord_fixed(1.3) + 
+# Add data layer
+  geom_polygon(data = state_join, aes(fill = Confirmed), color = "black") +
+    scale_fill_gradientn(colours = 
+                         wes_palette("IsleofDogs2", 2, type = "continuous")) +
+  ggtitle("COVID-19 Cases in Indiana") +
+# Cleaning up the graph
+  labs(x=NULL, y=NULL) +
+  theme(panel.border = element_blank()) +
+  theme(panel.background = element_blank()) +
+  theme(axis.ticks = element_blank()) +
+  theme(axis.text = element_blank())
+)
+
+```
+
+# Canada animated map 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+covid <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")) %>%
+          
+           rename(Province_State= "Province/State", Country_Region = "Country/Region") %>%
+           filter(Country_Region == c( "Canada", "US" ) ) %>% 
+           pivot_longer(-c(Province_State, Country_Region, Lat, Long),
+                  names_to = "Date", values_to = "Confirmed") %>%
+           mutate(Date = mdy(Date) - days(1),
+                  Place = paste(Lat,Long,sep="_")) %>%
+# Summarizes state and province information
+             group_by(Place,Date) %>%
+           summarise(cumulative_cases = ifelse(sum(Confirmed)>0,
+                     sum(Confirmed),NA_real_),
+                     Lat = mean(Lat),
+                     Long = mean(Long)) %>%
+           mutate(Pandemic_day = as.numeric(Date - min(Date)))
+
+#canada <- map("world", "Canada")
+
+
+world <- ggplot(covid, aes(x=Long, y=Lat, size=cumulative_cases/1000)) +
+  borders("world", region=c("Canada", "USA"),  colour="gray50", fill="grey90") +
+  theme_bw() +
+  geom_point(color="purple", alpha=0.5) + 
+  labs(title="Pandemic Day: {frame}", x='',y='',size="Cases (x1000)") +
+  theme(legend.position = "right") + coord_fixed(ratio=1.3) +
+  transition_time(Date) + enter_fade()
+
+animate(world, end_pause=30)
+
+```
+
