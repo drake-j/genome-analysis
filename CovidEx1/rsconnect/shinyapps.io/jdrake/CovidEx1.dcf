@@ -1,0 +1,12 @@
+name: CovidEx1
+title: CovidEx1
+username:
+account: jdrake
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2175928
+bundleId: 3057482
+url: https://jdrake.shinyapps.io/CovidEx1/
+when: 1587690090.04841
+asMultiple: FALSE
+asStatic: FALSE

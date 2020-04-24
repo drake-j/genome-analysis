@@ -27,4 +27,11 @@ Lab 6
 
 I like this paper as a reference placeholder [@Moilanen2002]
 
+
+Lab 11
+<https://jdrake.shinyapps.io/CovidEx1/>
+<https://jdrake.shinyapps.io/ShinyCovidEx2/>
+<https://jdrake.shinyapps.io/ShinyCovidEx3/>
+
+
 # REFERENCE

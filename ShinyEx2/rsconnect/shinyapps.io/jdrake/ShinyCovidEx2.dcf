@@ -1,0 +1,12 @@
+name: ShinyCovidEx2
+title: ShinyCovidEx2
+username:
+account: jdrake
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2176079
+bundleId: 3057570
+url: https://jdrake.shinyapps.io/ShinyCovidEx2/
+when: 1587692067.92128
+asMultiple: FALSE
+asStatic: FALSE
